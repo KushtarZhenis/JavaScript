@@ -2,14 +2,32 @@
 document.write("<h1>Hello World</h1>");
 console.log("Hello from console");
 
-let age = 18;
-let name = 'Kushtar';
-let isMale = true;
 let listInfoPerson = {
-
+  kushtar: {
+    age: 18,
+    isMale: true,
+    school: "KBTU",
+  },
+  talant: {
+    age: 17,
+    isMale: false,
+    school: "KBTU",
+  },
+  p1: {
+    age: 17,
+    isMale: false,
+    school: "KBTU",
+  },
+  p2: {
+    age: 21,
+    isMale: true,
+    school: "KBTU",
+  },
+  p3: {
+    age: 19,
+    isMale: false,
+    school: "KBTU",
+  },
 };
 
-console.log(age);
-console.log(name);
-console.log(isMale);
-// console.log(infoPerson);
+console.log(listInfoPerson);
