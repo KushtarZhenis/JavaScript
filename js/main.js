@@ -31,3 +31,8 @@ let listInfoPerson = {
 };
 
 console.log(listInfoPerson);
+console.log(Number("Erlan"));   //NaN
+console.log(parseInt("Erlan")); //NaN
+console.log(Number("11a"));     //NaN
+console.log(parseInt("11a"));   //11
+
