@@ -1,93 +1,62 @@
-// let n = 1476;
-// let a = 0;
-// let b = 1;
-// let res = 0;
+const createNavi = () => {
+  let nav = document.createElement('div');
+  nav.style = ''
+}
 
-// for (let i = 0; i <= n; i++) {
-//   if (i == 0) {
-//     res = a;
-//   } else if (i == 1) {
-//     res = b;
-//   } else {
-//     res = a + b;
-//     a = b;
-//     b = res;
-//   }
-// }
-// console.log(res);
-// console.log(Number.MAX_VALUE);
+const getWords = async () => {
+  const response = await fetch("https://www.sozdikqor.org/api/query/all", {
+    method: "post",
+  });
+  const words = await response.json();
 
-const fibonacci = (n) => {
-  if (n == 0) {
-    return 0;
-  } else if (n == 1) {
-    return 1;
+  let table = document.querySelector("table");
+
+  let thead = document.createElement("thead");
+  let theadTr = document.createElement("tr");
+  let theadArr = new Array(
+    "#",
+    "Кілт тізбегі",
+    "Қазақша",
+    "Русский",
+    "English",
+    "Türkçe",
+    "简体中文"
+  );
+  for (let item of theadArr) {
+    let th = document.createElement("th");
+    th.innerText = item;
+    theadTr.appendChild(th);
   }
-  return fibonacci(n - 1) + fibonacci(n - 2);
+  thead.appendChild(theadTr);
+  table.appendChild(thead);
+
+  let tbody = document.createElement("tbody");
+  let index = 1;
+  for (let key in words) {
+    let tr = document.createElement("tr");
+
+    let tdIndex = document.createElement("td");
+    tdIndex.innerText = index++;
+    tr.appendChild(tdIndex);
+
+    let td = document.createElement("td");
+    td.innerText = key;
+    tr.appendChild(td);
+
+    for (let innerKey in words[key]) {
+      let td = document.createElement("td");
+      td.innerText = words[key][innerKey];
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+
+  table.appendChild(tbody);
+
+  pageLoading = document.querySelector('.pageLoading');
+  pageLoading.style = 'display:none;';
 };
 
-let fib = fibonacci(50);
-console.log(fib);
+document.addEventListener('DOMContentLoaded', getWords);
 
-// const reverse = (str, i = str.length - 1) => {
-//   if (i == 0) {
-//     return str[0];
-//   }
-//   return str[i] + reverse(str, i - 1);
-// };
 
-// const reverse2 = (str, i = str.length - 1) =>
-//   i == 0 ? str[0] : str[i] + reverse(str, i - 1);
-
-// // const reverse3 = (str) => {
-// //   resstr = [];
-// //   for (let i = str.length - 1; i >= 0; i--) {
-// //     resstr.push(str[i]);
-// //   }
-// //   return resstr.join('');
-// // };
-
-// let str = "elorda";
-
-// res = reverse(str);
-// console.log(res);
-
-// res2 = reverse2(str);
-// console.log(res2);
-
-// // res3 = reverse3(str);
-// // console.log(res3);
-
-// const reverse4 = (str) => {
-//   if (str.length <= 1) {
-//     return str;
-//   }
-
-//   return (
-//     str[str.length - 1] + reverse4(str.substring(1, str.length - 1)) + str[0]
-//   );
-// };
-
-// res4 = reverse4(str);
-// console.log(res4);
-
-// const reverse5 = (str) => {
-//   if (str.length <= 1) {
-//     return str;
-//   }
-
-//   return str[str.length - 1] + reverse5(str.substr(1, str.length - 2)) + str[0];
-// };
-
-// res5 = reverse5(str);
-// console.log(res5);
-
-// const fac = (n) => {
-//   if (n == 1) {
-//     return 1;
-//   }
-//   return n * fac(n - 1);
-// };
-
-// res6 = fac(10);
-// console.log(res6);
